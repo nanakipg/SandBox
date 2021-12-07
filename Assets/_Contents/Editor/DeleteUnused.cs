@@ -1,29 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
 
 public class DeleteUnused : EditorWindow
 {
-    [MenuItem("Assets/Tools/Timeline/Unusedを消去",false,1)]
-    static void Open()
-    {
-        var window = GetWindow<DeleteUnused>(nameof(DeleteUnused));
-        window.Show();
-    }
-
-    private void OnGUI()
-    {
-        if (GUILayout.Button("実行する"))
-        {
-            Check();
-        }
-    }
-
-    private void Check()
+    [MenuItem("GameObject/Tools/Timeline/Unusedを消去",false,1)]
+    static void Delete()
     {
         List<GameObject> objects = new List<GameObject>();
         var pd =  Selection.activeGameObject.GetComponent<PlayableDirector>();
@@ -53,6 +36,6 @@ public class DeleteUnused : EditorWindow
             }
         }
         so.ApplyModifiedProperties();
-        
+        Debug.Log("完了");
     }
 }
